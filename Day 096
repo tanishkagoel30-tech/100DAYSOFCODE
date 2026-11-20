@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+struct Employee {
+    char name[50];
+    int id;
+    struct Date joiningDate;
+};
+
+int main() {
+    struct Employee emp;
+    printf("Enter employee name: ");
+    if (scanf("%49s", emp.name) != 1) { 
+        printf("Invalid name input.\n");
+        return 1;
+    }
+
+    printf("Enter employee ID: ");
+    if (scanf("%d", &emp.id) != 1) {
+        printf("Invalid ID input.\n");
+        return 1;
+    }
+
+    printf("Enter joining date (dd mm yyyy): ");
+    if (scanf("%d %d %d", &emp.joiningDate.day, &emp.joiningDate.month, &emp.joiningDate.year) != 3) {
+        printf("Invalid date input.\n");
+        return 1;
+    }
+    if (emp.joiningDate.day < 1 || emp.joiningDate.day > 31 ||
+        emp.joiningDate.month < 1 || emp.joiningDate.month > 12 ||
+        emp.joiningDate.year < 1) {
+        printf("Invalid date values.\n");
+        return 1;
+    }
+    printf("Name: %s | ID: %d | Joining Date: %02d/%02d/%d\n",
+           emp.name, emp.id,
+           emp.joiningDate.day, emp.joiningDate.month, emp.joiningDate.year);
+
+    return 0;
+}
